@@ -1,0 +1,34 @@
+{
+  "name": "magnolia-components",
+  "version": "0.0.0",
+  "description": "Web Components for Magnolia CMS",
+  "keywords": [
+    "frontools",
+    "javascript",
+    "css",
+    "ui",
+    "component",
+    "event",
+    "widget",
+    "polyfills"
+  ],
+  "homepage": "https://www.frontools.rocks",
+  "bugs": "https://gitlab.com/frontools/magnolia-components/issues",
+  "license": "CC0-1.0",
+  "author": "Cédric Eberhardt <design@frontools.rocks>",
+  "contributors": [],
+  "repository": "gitlab:frontools/magnolia-components",
+  "scripts": {
+    "eslint": "eslint **/*.js",
+    "stylelint": "stylelint widgets/*.css"
+  },
+  "engines": {
+    "node": ">= 4.3.0",
+    "npm": ">= 3.7.0"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  }
+}
