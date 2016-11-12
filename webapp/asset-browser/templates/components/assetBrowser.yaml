@@ -1,0 +1,4 @@
+templateScript: /asset-browser/templates/components/assetBrowser.ftl
+renderType: freemarker
+dialog: asset-browser:components/assetBrowser
+title: Asset Browser

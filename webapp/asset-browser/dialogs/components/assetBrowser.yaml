@@ -1,0 +1,25 @@
+form:
+ tabs:
+    - name: tabMain
+      label: Main
+      fields:
+        - name: rootFolder
+          class: info.magnolia.ui.form.field.definition.LinkFieldDefinition
+          targetWorkspace: dam
+          appName: assets
+          label: Select root folder
+          required: true
+          identifierToPathConverter:
+            class: info.magnolia.dam.app.assets.field.translator.AssetCompositeIdKeyTranslator
+          validators:
+            isFolder:
+              class: ch.openinteractive.realwwz.validators.FolderValidatorDefinition
+        - name: servletUrl
+          class: info.magnolia.ui.form.field.definition.TextFieldDefinition
+          label: Upload Servlet Url
+          required: true
+actions:
+  commit:
+    class: info.magnolia.ui.admincentral.dialog.action.SaveDialogActionDefinition
+  cancel:
+    class: info.magnolia.ui.admincentral.dialog.action.CancelDialogActionDefinition
