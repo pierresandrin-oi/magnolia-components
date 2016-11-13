@@ -12,7 +12,7 @@ About Magnolia Components
 
 
 
-[![NPM version](https://img.shields.io/npm/v/frontools.svg)](https://www.npmjs.com/package/magnolia-components)
+[![NPM version](https://img.shields.io/npm/v/magnolia-components.svg)](https://www.npmjs.com/package/magnolia-components)
 
 
 Used Web API
