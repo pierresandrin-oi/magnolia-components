@@ -55,7 +55,7 @@ class AssetBrowser extends HTMLElement {
 				<svg class="icon"><use xlink:href="#magnolia-asset-browser-upload"></use></svg>
 			</a>
 			<ul>
-				<li class="loading"><svg class="icon"><use xlink:href="#magnolia-asset-browser-loading"></use></svg></li>
+				<li class="loading has-icon"><svg class="icon"><use xlink:href="#magnolia-asset-browser-loading"></use></svg></li>
 			</ul>
 		</li>;
 	}
