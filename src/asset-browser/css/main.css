@@ -1,0 +1,61 @@
+.magnolia-asset-browser {
+    display: block;
+}
+
+.magnolia-asset-browser > ul,
+.magnolia-asset-browser > ul > li {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+}
+
+.magnolia-asset-browser ul {
+    padding: 0 10px;
+}
+
+.magnolia-asset-browser .is-open > ul {
+    padding: 5px 10px;
+}
+
+.magnolia-asset-browser li {
+    padding: 5px 15px;
+    border-left: 1px solid;
+}
+
+.magnolia-asset-browser li,
+.magnolia-asset-browser .name,
+.magnolia-asset-browser .upload {
+    line-height: 20px;
+    white-space: nowrap;
+}
+
+.magnolia-asset-browser li > ul {
+    height: 0;
+    overflow: hidden;
+}
+
+.magnolia-asset-browser li.is-open > ul {
+    height: auto;
+}
+
+.magnolia-asset-browser a {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.magnolia-asset-browser .icon {
+    font-size: 20px;
+    vertical-align: top;
+}
+
+.magnolia-asset-browser .name .icon { margin-right: 10px; }
+.magnolia-asset-browser .folder > .name .open { display: none; }
+.magnolia-asset-browser .folder.is-open > .name .open { display: block; }
+.magnolia-asset-browser .folder.is-open > .name .close { display: none; }
+
+.magnolia-asset-browser .asset .name {
+    font-style: italic;
+}
+
+.magnolia-asset-browser .folder .upload .icon { margin-left: 10px; }

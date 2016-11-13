@@ -24,35 +24,46 @@ class AssetBrowser extends HTMLElement {
 	}
 
 	render_children_nodes ( json ) {
-		json.nodes.forEach( node => {
-			switch ( node.type ) {
-				case "mgnl:folder":
-					this.render_folder_node( node );
-					break;
+		if ( json.hasOwnProperty( "nodes" ) ) {
+			json.nodes.forEach( node => {
+				switch ( node.type ) {
+					case "mgnl:folder":
+						this.render_folder_node( node );
+						break;
 
-				case "mgnl:asset":
-					this.render_asset_node( node );
-					break;
+					case "mgnl:asset":
+						this.render_asset_node( node );
+						break;
 
-				default:
-					break;
-			}
-		} );
+					default:
+						break;
+				}
+			} );
+		}
 	}
 
 	render_folder_node ( node ) {
-		return <li class="-folder" data-path={ node.path }>
-			<a class="-foldername" onclick={ this.toggle_folder_cb.bind( this ) }>
+		return <li class="folder" data-path={ node.path }>
+			<a class="name" onclick={ this.toggle_folder_cb.bind( this ) }>
+				<svg class="icon">
+					<use class="close" xlink:href="#magnolia-asset-browser-folder-open"></use>
+					<use class="open" xlink:href="#magnolia-asset-browser-folder-close"></use>
+				</svg>
 				{ node.name }
 			</a>
-			<a class="-upload" onclick={ this.upload_asset_cb.bind( this, node.path ) } />
-			<ul>{ "loading..." }</ul>
+			<a class="upload has-icon" onclick={ this.upload_asset_cb.bind( this, node.path ) }>
+				<svg class="icon"><use xlink:href="#magnolia-asset-browser-upload"></use></svg>
+			</a>
+			<ul>
+				<li><svg class="icon"><use xlink:href="#magnolia-asset-browser-loading"></use></svg></li>
+			</ul>
 		</li>;
 	}
 
 	render_asset_node ( node ) {
-		return <li class="-asset">
-			<a href={ `/dam/jcr:${ node.identifier }` }>
+		return <li class="asset">
+			<a class="name" href={ `/dam/jcr:${ node.identifier }` }>
+				<svg class="icon"><use xlink:href="#magnolia-asset-browser-asset"></use></svg>
 				{ node.name }
 			</a>
 		</li>;
@@ -84,24 +95,26 @@ class AssetBrowser extends HTMLElement {
 		FORM_DATA.append( "path", path );
 		FORM_DATA.append( "file", FILE, FILE.name );
 
-		futch( this.dataset.upload, { method: "POST", body: FORM_DATA }, p => console.log( p ) );
+		futch( this.dataset.upload, { method: "POST", body: FORM_DATA }, p => console.log( p ) )
+			.catch( err => console.log( err ) );
 	}
 
 	createdCallback () {
+		const $ul = document.createElement( "ul" );
+
 		this.classList.add( "magnolia-asset-browser" );
-		IncrementalDOM.patch( this, () => {
-			IncrementalDOM.elementOpen( "span", null, null, "class", "-foldername" );
-			IncrementalDOM.text( this.dataset.name );
-			IncrementalDOM.elementClose( "span" );
-			IncrementalDOM.elementOpen( "a", null, null, "class", "-upload", "onclick", this.upload_asset_cb.bind( this, this.dataset.path ) );
-			IncrementalDOM.elementClose( "a" );
-			IncrementalDOM.elementOpen( "ul" );
-			IncrementalDOM.elementClose( "ul" );
-		} );
+		this.appendChild( $ul );
+
+		IncrementalDOM.patch( $ul, this.render_children_nodes.bind( this, { nodes: [{
+			type: "mgnl:folder",
+			path: this.dataset.path,
+			name: this.dataset.name
+		}] } ) );
 	}
 
 	attachedCallback () {
-		this.render_children( this, this.dataset.path );
+		// loads and opens the root path
+		this.render_children( this.querySelector( "ul > li" ), this.dataset.path );
 	}
 }
 
