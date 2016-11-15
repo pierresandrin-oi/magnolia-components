@@ -1,0 +1,50 @@
+form:
+ tabs:
+    - name: tabMain
+      label: Main
+      fields:
+        - name: slides
+          class: info.magnolia.ui.form.field.definition.MultiValueFieldDefinition
+          label: Slides
+          transformerClass: info.magnolia.ui.form.field.transformer.multi.MultiValueSubChildrenNodePropertiesTransformer
+          field:
+            name: compositeField
+            class: info.magnolia.ui.form.field.definition.CompositeFieldDefinition
+            transformerClass: info.magnolia.ui.form.field.transformer.composite.NoOpCompositeTransformer
+            layout: vertical
+            fields:
+              - name: splitter
+                class: info.magnolia.ui.form.field.definition.StaticFieldDefinition
+                label: ----- ----- -----
+                value: A new slide
+              - name: video
+                class: info.magnolia.ui.form.field.definition.LinkFieldDefinition
+                targetWorkspace: dam
+                appName: assets
+                label: Video (MP4)
+                description: If you use a video, the image will be used as fallback
+                identifierToPathConverter:
+                  class: info.magnolia.dam.app.assets.field.translator.AssetCompositeIdKeyTranslator
+                contentPreviewDefinition:
+                  contentPreviewClass: info.magnolia.dam.app.ui.field.DamFilePreviewComponent
+              - name: image
+                class: info.magnolia.ui.form.field.definition.LinkFieldDefinition
+                required: true
+                targetWorkspace: dam
+                appName: assets
+                label: Image
+                identifierToPathConverter:
+                  class: info.magnolia.dam.app.assets.field.translator.AssetCompositeIdKeyTranslator
+                contentPreviewDefinition:
+                  contentPreviewClass: info.magnolia.dam.app.ui.field.DamFilePreviewComponent
+              - name: caption
+                class: info.magnolia.ui.form.field.definition.RichTextFieldDefinition
+                tables: false
+                label: Caption
+                height: 150
+                configJsFile: /.resources/ckeditor-config/ckeditor.config.text.js
+actions:
+  commit:
+    class: info.magnolia.ui.admincentral.dialog.action.SaveDialogActionDefinition
+  cancel:
+    class: info.magnolia.ui.admincentral.dialog.action.CancelDialogActionDefinition

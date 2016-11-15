@@ -1,0 +1,26 @@
+.magnolia-slideshow .slide {
+	z-index: 1;
+	transform: translateX( 100% ) translateZ( 0 );
+	transition: 0s;
+}
+
+.magnolia-slideshow .slide.is-first {
+	transform: translateX( 0 ) translateZ( 0 ) !important;
+	transition: 0s !important;
+}
+
+.magnolia-slideshow .slide.is-show {
+	z-index: 3;
+	transform: translateX( 0 ) translateZ( 0 );
+	transition: 1.5s;
+}
+
+.magnolia-slideshow .slide.is-last {
+	z-index: 2;
+	transform: translateX( -100% ) translateZ( 0 );
+	transition: 1.5s;
+}
+
+/* caption */
+.magnolia-slideshow > .slide { transform: translateX( 140% ) translateZ( 0 ); }
+.magnolia-slideshow > .slide.is-last { transform: translateX( -140% ) translateZ( 0 ); }
