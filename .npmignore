@@ -4,4 +4,4 @@
 .stylelintrc.json
 .idea
 src/**/java
-webapp
+light-modules
