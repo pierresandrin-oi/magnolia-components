@@ -2,7 +2,7 @@
 .magnolia-slideshow .slide.is-show { z-index: 3; }
 .magnolia-slideshow .slide.is-last{ z-index: 2; }
 
-
+/* background */
 .magnolia-slideshow > .background > .slide {
 	opacity: 0;
 	transform: scale( 1 ) rotate( 0.02deg ) translateZ( 0 );
@@ -22,21 +22,21 @@
 	transition: transform var( --magnolia-slideshow-delay ), opacity var( --magnolia-slideshow-transition );
 }
 
-/* caption */
-.magnolia-slideshow > .slide {
+/* foreground */
+.magnolia-slideshow > .foreground > .slide {
 	opacity: 0;
 	transition: 0s;
 	transition-timing-function: linear;
 }
 
-.magnolia-slideshow > .slide.is-show,
-.magnolia-slideshow > .slide.is-last {
+.magnolia-slideshow > .foreground > .slide.is-show,
+.magnolia-slideshow > .foreground > .slide.is-last {
 	transition-duration: calc( var( --magnolia-slideshow-transition ) / 2 );
 	transition-timing-function: ease-in-out;
 }
 
-.magnolia-slideshow > .slide.is-show {
+.magnolia-slideshow > .foreground > .slide.is-show {
 	opacity: 1;
 	transition-delay: calc( var( --magnolia-slideshow-transition ) / 2 );
 }
-.magnolia-slideshow > .slide.is-last { opacity: 0; }
+.magnolia-slideshow > .foreground > .slide.is-last { opacity: 0; }

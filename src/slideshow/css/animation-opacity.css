@@ -17,12 +17,12 @@
 	transition: opacity var( --magnolia-slideshow-transition );
 }
 
-/* caption */
-.magnolia-slideshow > .slide.is-show,
-.magnolia-slideshow > .slide.is-last {
+/* foreground */
+.magnolia-slideshow > .foreground > .slide.is-show,
+.magnolia-slideshow > .foreground > .slide.is-last {
 	transition-duration: calc( var( --magnolia-slideshow-transition ) / 2 );
 	transition-timing-function: ease-in-out;
 }
 
-.magnolia-slideshow > .slide.is-show { transition-delay: calc( var( --magnolia-slideshow-transition ) / 2 ) }
-.magnolia-slideshow > .slide.is-last { opacity: 0; }
+.magnolia-slideshow > .foreground > .slide.is-show { transition-delay: calc( var( --magnolia-slideshow-transition ) / 2 ) }
+.magnolia-slideshow > .foreground > .slide.is-last { opacity: 0; }
