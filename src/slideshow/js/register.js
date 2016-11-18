@@ -1,17 +1,3 @@
-function create_custom_event ( eventName, detail ) {
-	let changeEvent = null;
-
-	try {
-		changeEvent = new CustomEvent( eventName, { detail } );
-	}
-	catch ( err ) { // IE11
-		changeEvent = document.createEvent( "CustomEvent" );
-		changeEvent.initCustomEvent( eventName, true, true, { detail } );
-	}
-
-	return changeEvent;
-}
-
 class Slideshow extends HTMLElement {
 	constructor () {
 		super();
@@ -24,11 +10,7 @@ class Slideshow extends HTMLElement {
 	 */
 	_run () {
 		const CURRENT_SLIDE = this.$foregroundSlides[ this.current ],
-			CURRENT_BACKGROUND_SLIDE = this.$backgroundSlides[ this.current ],
-			CHANGE_EVENT = create_custom_event( "change", {
-				id: this.current,
-				occurrence: ++this.occurrence
-			} );
+			CURRENT_BACKGROUND_SLIDE = this.$backgroundSlides[ this.current ];
 
 		/**
 		 * Remove last slide CSS classes when transition ends
@@ -42,10 +24,6 @@ class Slideshow extends HTMLElement {
 			this.$foregroundSlides[ index ].classList.remove( "is-last" );
 			this.$backgroundSlides[ index ].classList.remove( "is-show" );
 			this.$backgroundSlides[ index ].classList.remove( "is-last" );
-			if ( this.bullets ) {
-				this.bullets[ index ].classList.remove( "is-show" );
-				this.bullets[ index ].classList.remove( "is-last" );
-			}
 		}
 
 		for ( let i = 0; i < this.count; i++ ) {
@@ -53,7 +31,7 @@ class Slideshow extends HTMLElement {
 				if ( this.current !== this.last ) {
 					this.$foregroundSlides[ i ].classList.add( "is-last" );
 					this.$backgroundSlides[ i ].classList.add( "is-last" );
-					this.timeoutID = setTimeout( transition_end.bind( this, i ), this.transitionDelay );
+					setTimeout( transition_end.bind( this, i ), this.transitionDelay );
 				}
 			}
 			else {
@@ -67,7 +45,8 @@ class Slideshow extends HTMLElement {
 
 		CURRENT_SLIDE.classList.add( "is-show" );
 		CURRENT_BACKGROUND_SLIDE.classList.add( "is-show" );
-		if ( this.occurrence <= 1 ) {
+
+		if ( ++this.occurrence < 2 ) {
 			CURRENT_SLIDE.classList.add( "is-first" );
 			CURRENT_BACKGROUND_SLIDE.classList.add( "is-first" );
 			setTimeout( () => {
@@ -78,33 +57,7 @@ class Slideshow extends HTMLElement {
 
 		this.last = this.current;
 		this.current = ( this.current + 1 ) % this.count;
-
-		this.dispatchEvent( CHANGE_EVENT );
 	}
-
-	/**
-	 * Go to that slide
-	 * @param {number} slideNumber - slide id
-	 * @returns {void}
-	 */
-	goto ( slideNumber ) {
-		clearInterval( this.intervalID );
-		clearTimeout( this.timeoutID );
-		this.current = slideNumber < 0 ? slideNumber % this.count + this.count : slideNumber % this.count;
-		this._run();
-	}
-
-	/**
-	 * Go to the next slide
-	 * @returns {void}
-	 */
-	next () { this.goto( this.current + 1 ); }
-
-	/**
-	 * Go to the previous slide
-	 * @returns {void}
-	 */
-	previous () { this.goto( this.current + 1 ); }
 
 	createdCallback () {
 		this.classList.add( "magnolia-slideshow" );
@@ -117,8 +70,6 @@ class Slideshow extends HTMLElement {
 
 		this.current = 0;
 		this.last = -1;
-		this.intervalID = 0;
-		this.timeoutID = 0;
 		this.occurrence = 0;
 	}
 
@@ -128,7 +79,7 @@ class Slideshow extends HTMLElement {
 		setTimeout( this._run.bind( this ), 16 );
 
 		if ( this.count > 1 && DELAY > 0 ) {
-			this.intervalID = setInterval( this._run.bind( this ), DELAY );
+			setInterval( this._run.bind( this ), DELAY );
 		}
 	}
 }
