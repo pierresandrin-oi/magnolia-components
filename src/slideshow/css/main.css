@@ -48,6 +48,8 @@
 	object-position: center;
 }
 
+.magnolia-slideshow .slide > video { z-index: 1; }
+
 /* Remove iOS, Android play button */
 .magnolia-slideshow video::-webkit-media-controls,
 .magnolia-slideshow video::-webkit-media-controls-panel,
