@@ -34,8 +34,7 @@
 	background-position: center;
 }
 
-.magnolia-slideshow .slide > video,
-.magnolia-slideshow .slide > picture {
+.magnolia-slideshow .slide > video {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -43,12 +42,23 @@
 	height: 100%;
 	min-width: 100%;
 	min-height: 100%;
-	transform: translateX( -50% ) translateY( -50% );
+	transform: translateX( -50% ) translateY( -50% ) translateZ( 0 );
 	object-fit: cover;
 	object-position: center;
+
+	z-index: 1;
 }
 
-.magnolia-slideshow .slide > video { z-index: 1; }
+.magnolia-slideshow .slide > picture > img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: auto;
+	height: auto;
+	min-width: 100%;
+	min-height: 100%;
+	transform: translateX( -50% ) translateY( -50% ) translateZ( 0 );
+}
 
 /* Remove iOS, Android play button */
 .magnolia-slideshow video::-webkit-media-controls,
