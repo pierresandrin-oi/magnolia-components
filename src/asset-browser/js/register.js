@@ -99,27 +99,28 @@ class AssetBrowser extends HTMLElement {
 			.catch( err => console.log( err ) );
 	}
 
-	createdCallback () {
+	connectedCallback () {
 		const $ul = document.createElement( "ul" );
 
 		this.classList.add( "magnolia-asset-browser" );
 		this.appendChild( $ul );
 
-		IncrementalDOM.patch( $ul, this.render_children_nodes.bind( this, { nodes: [{
-			type: "mgnl:folder",
-			path: this.dataset.path,
-			name: this.dataset.name
-		}] } ) );
-	}
+		IncrementalDOM.patch( $ul, this.render_children_nodes.bind( this, {
+			nodes: [{
+				type: "mgnl:folder",
+				path: this.dataset.path,
+				name: this.dataset.name
+			}]
+		} ) );
 
-	attachedCallback () {
 		// loads and opens the root path
 		this.render_children( this.querySelector( "ul > li" ), this.dataset.path );
 	}
 }
 
 function register_asset_browser () {
-	document.registerElement( "magnolia-asset-browser", AssetBrowser );
+	customElements.define( "magnolia-asset-browser", AssetBrowser );
 }
 
 export default register_asset_browser;
+export { AssetBrowser };
