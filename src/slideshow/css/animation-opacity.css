@@ -1,28 +1,28 @@
-.magnolia-slideshow .slide {
+magnolia-slideshow .slide {
 	z-index: 1;
 	opacity: 0;
 	transition: 0s;
 	transition-timing-function: linear;
 }
 
-.magnolia-slideshow .slide.is-show {
+magnolia-slideshow .slide.is-show {
 	z-index: 3;
 	opacity: 1;
 	transition: opacity var( --magnolia-slideshow-transition );
 }
 
-.magnolia-slideshow .slide.is-last {
+magnolia-slideshow .slide.is-last {
 	z-index: 2;
 	opacity: 1;
 	transition: opacity var( --magnolia-slideshow-transition );
 }
 
 /* foreground */
-.magnolia-slideshow > .foreground > .slide.is-show,
-.magnolia-slideshow > .foreground > .slide.is-last {
+magnolia-slideshow > .foreground > .slide.is-show,
+magnolia-slideshow > .foreground > .slide.is-last {
 	transition-duration: calc( var( --magnolia-slideshow-transition ) / 2 );
 	transition-timing-function: ease-in-out;
 }
 
-.magnolia-slideshow > .foreground > .slide.is-show { transition-delay: calc( var( --magnolia-slideshow-transition ) / 2 ) }
-.magnolia-slideshow > .foreground > .slide.is-last { opacity: 0; }
+magnolia-slideshow > .foreground > .slide.is-show { transition-delay: calc( var( --magnolia-slideshow-transition ) / 2 ) }
+magnolia-slideshow > .foreground > .slide.is-last { opacity: 0; }

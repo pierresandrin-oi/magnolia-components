@@ -1,6 +1,10 @@
 class Slideshow extends HTMLElement {
 	constructor () {
 		super();
+
+		this._current = 0;
+		this._last = -1;
+		this._occurrence = 0;
 	}
 
 	/**
@@ -9,8 +13,8 @@ class Slideshow extends HTMLElement {
 	 * @private
 	 */
 	_run () {
-		const CURRENT_SLIDE = this.$foregroundSlides[ this.current ],
-			CURRENT_BACKGROUND_SLIDE = this.$backgroundSlides[ this.current ];
+		const CURRENT_SLIDE = this.$foregroundSlides[ this._current ],
+			CURRENT_BACKGROUND_SLIDE = this.$backgroundSlides[ this._current ];
 
 		/**
 		 * Remove last slide CSS classes when transition ends
@@ -26,12 +30,12 @@ class Slideshow extends HTMLElement {
 			this.$backgroundSlides[ index ].classList.remove( "is-last" );
 		}
 
-		for ( let i = 0; i < this.count; i++ ) {
-			if ( this.last === i ) {
-				if ( this.current !== this.last ) {
+		for ( let i = 0; i < this._count; i++ ) {
+			if ( this._last === i ) {
+				if ( this._current !== this._last ) {
 					this.$foregroundSlides[ i ].classList.add( "is-last" );
 					this.$backgroundSlides[ i ].classList.add( "is-last" );
-					setTimeout( transition_end.bind( this, i ), this.transitionDelay );
+					setTimeout( transition_end.bind( this, i ), this._transitionDelay );
 				}
 			}
 			else {
@@ -46,46 +50,38 @@ class Slideshow extends HTMLElement {
 		CURRENT_SLIDE.classList.add( "is-show" );
 		CURRENT_BACKGROUND_SLIDE.classList.add( "is-show" );
 
-		if ( ++this.occurrence < 2 ) {
+		if ( ++this._occurrence < 2 ) {
 			CURRENT_SLIDE.classList.add( "is-first" );
 			CURRENT_BACKGROUND_SLIDE.classList.add( "is-first" );
 			setTimeout( () => {
 				CURRENT_SLIDE.classList.remove( "is-first" );
 				CURRENT_BACKGROUND_SLIDE.classList.remove( "is-first" );
-			}, this.transitionDelay );
+			}, this._transitionDelay );
 		}
 
-		this.last = this.current;
-		this.current = ( this.current + 1 ) % this.count;
+		this._last = this._current;
+		this._current = ( this._current + 1 ) % this._count;
 	}
 
-	createdCallback () {
-		this.classList.add( "magnolia-slideshow" );
+	connectedCallback () {
+		const DELAY = Number( this.dataset.delay );
 
 		this.$foregroundSlides = this.querySelectorAll( ".foreground > .slide" );
 		this.$backgroundSlides = this.querySelectorAll( ".background > .slide" );
 
-		this.count = this.$foregroundSlides.length;
-		this.transitionDelay = Number( this.dataset.transition );
+		this._count = this.$foregroundSlides.length;
+		this._transitionDelay = Number( this.dataset.transition );
 
-		this.current = 0;
-		this.last = -1;
-		this.occurrence = 0;
-	}
-
-	attachedCallback () {
-		const DELAY = Number( this.dataset.delay );
-
-		setTimeout( this._run.bind( this ), 16 );
-
-		if ( this.count > 1 && DELAY > 0 ) {
+		if ( this._count > 1 && DELAY > 0 ) {
 			setInterval( this._run.bind( this ), DELAY );
 		}
+
+		requestAnimationFrame( this._run.bind( this ) );
 	}
 }
 
 function register_slideshow () {
-	document.registerElement( "magnolia-slideshow", Slideshow );
+	customElements.define( "magnolia-slideshow", Slideshow );
 }
 
-export default register_slideshow;
+export { Slideshow, register_slideshow };

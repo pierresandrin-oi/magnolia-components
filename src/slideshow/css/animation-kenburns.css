@@ -1,42 +1,42 @@
-.magnolia-slideshow .slide { z-index: 1; }
-.magnolia-slideshow .slide.is-show { z-index: 3; }
-.magnolia-slideshow .slide.is-last{ z-index: 2; }
+magnolia-slideshow .slide { z-index: 1; }
+magnolia-slideshow .slide.is-show { z-index: 3; }
+magnolia-slideshow .slide.is-last{ z-index: 2; }
 
 /* background */
-.magnolia-slideshow > .background > .slide {
+magnolia-slideshow > .background > .slide {
 	opacity: 0;
 	transform: scale( 1 ) rotate( 0.02deg ) translateZ( 0 );
 	transform-origin: center;
 	transition: 0s;
 }
 
-.magnolia-slideshow > .background > .slide.is-show {
+magnolia-slideshow > .background > .slide.is-show {
 	opacity: 1;
 	transform: scale( var( --magnolia-slideshow-scale ) ) rotate( 0.02deg ) translateZ( 0 );
 	transition: transform var( --magnolia-slideshow-delay ), opacity var( --magnolia-slideshow-transition );
 }
 
-.magnolia-slideshow > .background > .slide.is-last {
+magnolia-slideshow > .background > .slide.is-last {
 	opacity: 1;
 	transform: scale( var( --magnolia-slideshow-scale ) ) rotate( 0.02deg ) translateZ( 0 );
 	transition: transform var( --magnolia-slideshow-delay ), opacity var( --magnolia-slideshow-transition );
 }
 
 /* foreground */
-.magnolia-slideshow > .foreground > .slide {
+magnolia-slideshow > .foreground > .slide {
 	opacity: 0;
 	transition: 0s;
 	transition-timing-function: linear;
 }
 
-.magnolia-slideshow > .foreground > .slide.is-show,
-.magnolia-slideshow > .foreground > .slide.is-last {
+magnolia-slideshow > .foreground > .slide.is-show,
+magnolia-slideshow > .foreground > .slide.is-last {
 	transition-duration: calc( var( --magnolia-slideshow-transition ) / 2 );
 	transition-timing-function: ease-in-out;
 }
 
-.magnolia-slideshow > .foreground > .slide.is-show {
+magnolia-slideshow > .foreground > .slide.is-show {
 	opacity: 1;
 	transition-delay: calc( var( --magnolia-slideshow-transition ) / 2 );
 }
-.magnolia-slideshow > .foreground > .slide.is-last { opacity: 0; }
+magnolia-slideshow > .foreground > .slide.is-last { opacity: 0; }
