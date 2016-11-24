@@ -84,4 +84,5 @@ function register_slideshow () {
 	customElements.define( "magnolia-slideshow", Slideshow );
 }
 
-export { Slideshow, register_slideshow };
+export default register_slideshow;
+export { Slideshow };
