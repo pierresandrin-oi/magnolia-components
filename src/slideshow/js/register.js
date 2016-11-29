@@ -1,10 +1,14 @@
 class Slideshow extends HTMLElement {
-	constructor () {
-		super();
+	constructor ( self ) {
+		// Use self instead of this because of v1 polyfill
+		self = super( self );
 
-		this._current = 0;
-		this._last = -1;
-		this._occurrence = 0;
+		self._current = 0;
+		self._last = -1;
+		self._occurrence = 0;
+
+		// important in case you create instances procedurally -> new MyElement();
+		return self;
 	}
 
 	/**
