@@ -2,12 +2,16 @@ import * as IncrementalDOM from "incremental-dom";
 import futch from "frontools/helpers/futch";
 
 class AssetBrowser extends HTMLElement {
-	constructor () {
-		super();
+	constructor ( self ) {
+		// Use self instead of this because of v1 polyfill
+		self = super( self );
 
-		this.HEADERS = new Headers();
-		this.HEADERS.append( "Accept", "application/json" );
-		this.HEADERS.append( "Content-Type", "application/json" );
+		self.HEADERS = new Headers();
+		self.HEADERS.append( "Accept", "application/json" );
+		self.HEADERS.append( "Content-Type", "application/json" );
+
+		// important in case you create instances procedurally -> new MyElement();
+		return self;
 	}
 
 	render_children ( parentElement, path ) {
