@@ -5,36 +5,36 @@ imaging:
     "slideshow-375":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 375
-    "slideshow-375@2x":
+    "slideshow-375-2x":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 750
     "slideshow-667":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 667
-    "slideshow-667@2x":
+    "slideshow-667-2x":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 1334
     "slideshow-1024":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 1024
-    "slideshow-1024@2x":
+    "slideshow-1024-2x":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 2048
     "slideshow-1440":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 1440
-    "slideshow-1440@2x":
+    "slideshow-1440-2x":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 2880
     "slideshow-1920":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 1920
-    "slideshow-1920@2x":
+    "slideshow-1920-2x":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 3840
     "slideshow-2560":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 2560
-    "slideshow-2560@2x":
+    "slideshow-2560-2x":
       class: info.magnolia.templating.imaging.variation.SimpleResizeVariation
       width: 5120

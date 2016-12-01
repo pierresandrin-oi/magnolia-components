@@ -25,17 +25,17 @@
 			[#if slide.image?has_content]
 			<picture>
 				<source media="(max-width: 376px)"
-						srcset="${damfn.getRendition(slide.image, "slideshow-375").getLink()}, ${damfn.getRendition(slide.image, "slideshow-375@2x").getLink()} 2x">
+						srcset="${damfn.getRendition(slide.image, "slideshow-375").getLink()}, ${damfn.getRendition(slide.image, "slideshow-375-2x").getLink()} 2x">
 				<source media="(max-width: 668px)"
-						srcset="${damfn.getRendition(slide.image, "slideshow-667").getLink()}, ${damfn.getRendition(slide.image, "slideshow-667@2x").getLink()} 2x">
+						srcset="${damfn.getRendition(slide.image, "slideshow-667").getLink()}, ${damfn.getRendition(slide.image, "slideshow-667-2x").getLink()} 2x">
 				<source media="(max-width: 1025px)"
-						srcset="${damfn.getRendition(slide.image, "slideshow-1024").getLink()}, ${damfn.getRendition(slide.image, "slideshow-1024@2x").getLink()} 2x">
+						srcset="${damfn.getRendition(slide.image, "slideshow-1024").getLink()}, ${damfn.getRendition(slide.image, "slideshow-1024-2x").getLink()} 2x">
 				<source media="(max-width: 1441px)"
-						srcset="${damfn.getRendition(slide.image, "slideshow-1440").getLink()}, ${damfn.getRendition(slide.image, "slideshow-1440@2x").getLink()} 2x">
+						srcset="${damfn.getRendition(slide.image, "slideshow-1440").getLink()}, ${damfn.getRendition(slide.image, "slideshow-1440-2x").getLink()} 2x">
 				<source media="(max-width: 1921px)"
-						srcset="${damfn.getRendition(slide.image, "slideshow-1920").getLink()}, ${damfn.getRendition(slide.image, "slideshow-1929@2x").getLink()} 2x">
+						srcset="${damfn.getRendition(slide.image, "slideshow-1920").getLink()}, ${damfn.getRendition(slide.image, "slideshow-1920-2x").getLink()} 2x">
 				<source
-						srcset="${damfn.getRendition(slide.image, "slideshow-2560").getLink()}, ${damfn.getRendition(slide.image, "slideshow-2560@2x").getLink()} 2x">
+						srcset="${damfn.getRendition(slide.image, "slideshow-2560").getLink()}, ${damfn.getRendition(slide.image, "slideshow-2560-2x").getLink()} 2x">
 
 				<img src="${damfn.getRendition(slide.image, "slideshow-1920").getLink()}" alt="">
 			</picture>
