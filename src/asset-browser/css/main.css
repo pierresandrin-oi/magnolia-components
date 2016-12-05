@@ -58,4 +58,4 @@ magnolia-asset-browser .asset .name {
     font-style: italic;
 }
 
-magnolia-asset-browser .folder .upload .icon { margin-left: 10px; }
+magnolia-asset-browser .folder .upload { margin-left: 10px; }
