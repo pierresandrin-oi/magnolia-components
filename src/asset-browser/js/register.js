@@ -84,22 +84,27 @@ class AssetBrowser extends HTMLElement {
 		}
 	}
 
-	upload_asset_cb ( path ) {
+	upload_asset_cb ( path, event ) {
 		const $fileInput = document.createElement( "input" );
 
 		$fileInput.setAttribute( "type", "file" );
-		$fileInput.addEventListener( "change", this.send_form_cb.bind( this, path ) );
+		$fileInput.addEventListener( "change", this.send_form_cb.bind( this, path, event.currentTarget.parentNode ) );
 		$fileInput.click();
 	}
 
-	send_form_cb ( path, event ) {
+	send_form_cb ( path, parentElement, event ) {
 		const FILE = event.currentTarget.files[ 0 ],
 			FORM_DATA = new FormData();
 
 		FORM_DATA.append( "path", path );
 		FORM_DATA.append( "file", FILE, FILE.name );
 
-		futch( this.dataset.upload, { method: "POST", body: FORM_DATA }, p => console.log( p ) )
+		function progress_cb ( event ) {
+			console.log( `${ event.loaded / event.total * 100 }%` );
+		}
+
+		futch( this.dataset.upload, { method: "POST", body: FORM_DATA }, progress_cb )
+			.then( () => this.render_children( parentElement, path ) )
 			.catch( err => console.log( err ) );
 	}
 
