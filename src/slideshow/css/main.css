@@ -10,6 +10,7 @@ magnolia-slideshow {
 	display: block;
 	position: relative;
 	overflow: hidden;
+	transform: translateZ( 0 );
 }
 
 magnolia-slideshow > .background {
@@ -32,6 +33,7 @@ magnolia-slideshow .slide {
 	min-height: 100%;
 	background-size: cover;
 	background-position: center;
+	transform: translateZ( 0 );
 }
 
 magnolia-slideshow .slide > picture > img,

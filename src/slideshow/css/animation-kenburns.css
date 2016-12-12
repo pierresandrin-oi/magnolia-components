@@ -1,4 +1,7 @@
-magnolia-slideshow .slide { z-index: 1; }
+magnolia-slideshow .slide {
+	z-index: 1;
+	will-change: transform, opacity;
+}
 magnolia-slideshow .slide.is-show { z-index: 3; }
 magnolia-slideshow .slide.is-last{ z-index: 2; }
 

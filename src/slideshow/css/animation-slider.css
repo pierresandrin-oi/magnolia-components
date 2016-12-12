@@ -1,6 +1,7 @@
 magnolia-slideshow .slide {
 	z-index: 1;
 	transition: 0s;
+	will-change: transform;
 }
 
 magnolia-slideshow .slide.is-first {

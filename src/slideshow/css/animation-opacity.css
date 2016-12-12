@@ -3,6 +3,7 @@ magnolia-slideshow .slide {
 	opacity: 0;
 	transition: 0s;
 	transition-timing-function: linear;
+	will-change: opacity;
 }
 
 magnolia-slideshow .slide.is-show {
