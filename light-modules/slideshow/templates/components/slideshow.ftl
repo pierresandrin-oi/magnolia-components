@@ -22,7 +22,8 @@
 			</video>
 			[/#if]
 
-			[#if slide.image?has_content]
+			[#if slide.image?has_content && slide.image.isAsset()]
+			[#if slide.image.getName()?ends_with(".jpg") || slide.image.getName()?ends_with(".png") || slide.image.getName()?ends_with(".jpeg")]
 			<picture>
 				<source media="(max-width: 376px)"
 						srcset="${damfn.getRendition(slide.image, "slideshow-375").getLink()}, ${damfn.getRendition(slide.image, "slideshow-375-2x").getLink()} 2x">
@@ -39,6 +40,12 @@
 
 				<img src="${damfn.getRendition(slide.image, "slideshow-1920").getLink()}" alt="">
 			</picture>
+			[#else]
+			<picture>
+				[#-- Do not get rendition. It could be an animated gif --]
+				<img src="${slide.image.getLink()!}" alt="">
+			</picture>
+			[/#if]
 			[/#if]
 		</div>
 	[/#list]
