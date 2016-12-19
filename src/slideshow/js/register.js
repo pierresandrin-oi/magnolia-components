@@ -7,6 +7,9 @@ class Slideshow extends HTMLElement {
 		self._last = -1;
 		self._occurrence = 0;
 
+		self._delay = 0;
+		self._intervalID = 0;
+
 		// important in case you create instances procedurally -> new MyElement();
 		return self;
 	}
@@ -67,8 +70,20 @@ class Slideshow extends HTMLElement {
 		this._current = ( this._current + 1 ) % this._count;
 	}
 
+	play () {
+		if ( this._count > 1 && this._delay > 0 ) {
+			this._intervalID = setInterval( () => {
+				requestAnimationFrame( this._run.bind( this ) );
+			}, this._delay );
+		}
+	}
+
+	pause () {
+		clearInterval( this._intervalID );
+	}
+
 	connectedCallback () {
-		const DELAY = Number( this.dataset.delay );
+		this._delay = Number( this.dataset.delay );
 
 		this.$foregroundSlides = this.querySelectorAll( ".foreground > .slide" );
 		this.$backgroundSlides = this.querySelectorAll( ".background > .slide" );
@@ -76,10 +91,7 @@ class Slideshow extends HTMLElement {
 		this._count = this.$foregroundSlides.length;
 		this._transitionDelay = Number( this.dataset.transition );
 
-		if ( this._count > 1 && DELAY > 0 ) {
-			setInterval( this._run.bind( this ), DELAY );
-		}
-
+		this.play();
 		requestAnimationFrame( this._run.bind( this ) );
 	}
 }
