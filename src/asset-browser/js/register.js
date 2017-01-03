@@ -47,13 +47,17 @@ class AssetBrowser extends HTMLElement {
 	}
 
 	render_folder_node ( node ) {
+		var folderName = node.name;
+		if (node.hasOwnProperty("properties") && node.properties.length > 0 && node.properties[0].name == "title" && node.properties[0].hasOwnProperty("values") && node.properties[0].values.length > 0) {
+			folderName = node.properties[0].values[0];
+		}
 		return <li class="folder" data-path={ node.path }>
 			<a class="name" onclick={ this.toggle_folder_cb.bind( this ) }>
 				<svg class="icon">
 					<use class="close" xlink:href="#magnolia-asset-browser-folder-open"></use>
 					<use class="open" xlink:href="#magnolia-asset-browser-folder-close"></use>
 				</svg>
-				{ node.name }
+				{ folderName }
 			</a>
 			<a class="upload has-icon" onclick={ this.upload_asset_cb.bind( this, node.path ) }>
 				<svg class="icon"><use xlink:href="#magnolia-asset-browser-upload"></use></svg>
